@@ -25,77 +25,7 @@ class DashboardPage extends StatelessWidget {
                   if (productsController.products.isEmpty) {
                     return const Center(child: Text("No products found"));
                   }
-                  if (productsController.showGrid.value)
-                    // ignore: curly_braces_in_flow_control_structures
-                    return GridView.builder(
-                      padding: const EdgeInsets.only(top: 16),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 0.7,
-                      ),
-                      itemCount: productsController.products.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Card(
-                          elevation: 0.0,
-                          child: Container(
-                            height: 150,
-                            padding: const EdgeInsets.all(16),
-                            margin: const EdgeInsets.only(bottom: 8.0),
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: 100,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: NetworkImage(productsController
-                                          .products[index]["image"]),
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(width: 8),
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          productsController.products[index]
-                                              ["title"],
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                            productsController.products[index]
-                                                ["description"],
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                        Text(
-                                          "\$${productsController.products[index]["price"]}",
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
+                  // ignore: curly_braces_in_flow_control_structures
                   return _buildProductsList();
                 },
               ),
@@ -113,13 +43,13 @@ class DashboardPage extends StatelessWidget {
       itemBuilder: (context, index) => Card(
         elevation: 0.0,
         child: Container(
-          height: 150,
+          height: 210,
           padding: const EdgeInsets.all(16),
           margin: const EdgeInsets.only(bottom: 8.0),
           child: Row(
             children: [
               Container(
-                width: 100,
+                width: 120,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: NetworkImage(
@@ -136,6 +66,13 @@ class DashboardPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
+                        "ID: ${productsController.products[index]["id"]}",
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
                         productsController.products[index]["title"],
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
@@ -143,6 +80,14 @@ class DashboardPage extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
+                      const SizedBox(height: 5),
+                      Text(
+                        "Category: ${productsController.products[index]["category"]}",
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
                       Expanded(
                         child: Text(
                           productsController.products[index]["description"],
@@ -150,8 +95,16 @@ class DashboardPage extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
+                      const SizedBox(height: 5),
                       Text(
                         "\$${productsController.products[index]["price"]}",
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        "Rating: ${productsController.products[index]["rating"]}",
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
